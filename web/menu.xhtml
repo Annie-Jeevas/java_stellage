@@ -11,11 +11,13 @@
             <li><a href="#">Бан</a></li>   
             <li><a href="login.xhtml">Войти</a></li>
                
-            <c:if test="#{sessionBean.principal!=null}">
-                <li>Здравствуйте, #{sessionBean.principal.name}</li>
-            </c:if>
+            
+            <li>Здравствуйте, #{request.remoteUser}</li>
+            
         </ul> 
     </div> 
+    <h:form>
+        <p><h:commandLink action="#{LoginBean.logout()}" value="Выход"/></p></h:form>
     <header id="header">
         Электронная библиотека "Стеллаж"
     </header>
