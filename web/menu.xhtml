@@ -1,0 +1,19 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <div id="container_menu"> 
+        <ul id="nav"> 
+            <li><a href="real_home.xhtml">Главная</a></li> 
+            <li><a href="user_profile.xhtml">Кабинет</a></li> 
+            <li><a href="#">Бан</a></li>   
+            <li><a href="login.xhtml">Войти</a></li>
+               
+            <li>Здравствуйте, #{FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()}</li>
+        </ul> 
+    </div> 
+    <header id="header">
+        Электронная библиотека "Стеллаж"
+    </header>
+</ui:composition>
