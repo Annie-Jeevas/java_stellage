@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.naming.NamingException;
 public class SessionBean {
 
     private final Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+    private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();    
     public int idBookForReading;
     private Book ReadingBook;
     private ArrayList<Comment> Comments;
@@ -74,6 +76,7 @@ public class SessionBean {
     public ArrayList<Comment> getComments() {
 
         try {
+            Comments = new ArrayList<>();
             DAOComment daoc = new DAOComment();
             Comments = daoc.read(ReadingBook);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -99,9 +102,9 @@ public class SessionBean {
         try {
             //addedComm = new Comment();
             String username;
-            if (principal!=null){
-            username = principal.getName();}
-            else { username = "anya";}
+            
+            username = principal.getName();
+            
             DAOUser daou = new DAOUser();
             DAOReader daor = new DAOReader();
             User user = daou.getUserByUsername(username);
