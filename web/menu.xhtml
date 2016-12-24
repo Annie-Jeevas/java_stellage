@@ -2,6 +2,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" 
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <div id="container_menu"> 
         <ul id="nav"> 
@@ -10,7 +11,9 @@
             <li><a href="#">Бан</a></li>   
             <li><a href="login.xhtml">Войти</a></li>
                
-            <li>Здравствуйте, #{FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()}</li>
+            <c:if test="#{sessionBean.principal!=null}">
+                <li>Здравствуйте, #{sessionBean.principal.name}</li>
+            </c:if>
         </ul> 
     </div> 
     <header id="header">
