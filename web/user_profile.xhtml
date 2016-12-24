@@ -1,0 +1,81 @@
+<!-- 
+    Document   : user_profile
+    Created on : 03.12.2016, 15:17:36
+    Author     : Анюта
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"          
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <link href="wrapper.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link href="style.css" rel="stylesheet" type="text/css" media="screen" /> 
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+        <script src="js/animate-bg.js" type="text/javascript"></script> 
+        <script src="js/scripts.js" type="text/javascript"></script> 
+        <script src="js/modernizr.custom.js"></script>
+        <title>Стеллаж - Профиль</title>
+    </h:head>
+
+    <h:body>
+
+        <ui:include src="menu.xhtml"/>
+
+        <div class="user_profile">
+            <section>                                  
+                <h1>#{request.remoteUser}</h1>
+                <img class="user_profile" src="images/#{request.remoteUser}.jpg"/>
+
+            </section>
+        </div>
+
+
+        <table width="100%" vertical-align="top">
+            <tr>
+                <td width="50%"><a class="ahref" href="my_books.jsp">Мои книги</a></td>
+                <td width="50%"><a class="ahref" href="my_requests.jsp">Мои заявки</a></td>                   
+            </tr>
+            <tr>
+                <td width="50%">
+                    <div class="wrapper_body_2">
+
+                        <div class="cbm_wrap ">
+                            <h1>Волшебная зима</h1> <!--имя книги-->
+                            <img src="https://i.livelib.ru/boocover/1000496611/o/3baa/Tuve_Yansson__V_kontse_noyabrya.jpeg"/> <!--обложка-->
+                            <p> Небо было почти черным, а снег при свете луны - ярко-голубым. 
+
+                                Под ледяным покровом неподвижно спало море,  а  глубоко  в  земле
+                                среди древесных корней  всем  мелким  зверюшкам  и  насекомым  снилась
+                                весна. Но до весны было еще очень далеко -  новый  год  только-только
+                                вступил в свои права.
+
+                            </p><!--аннотация-->
+                            <br />
+                            <a>Туве Янссон 1990</a><!--автор-->
+                        </div>
+
+                    </div>
+                </td>
+                <td width="50%">
+                    <div class="wrapper_body_2">
+                        <c:forEach var="req" items="#{mRequestBean.getMyRequests()}">
+                            <div class="cbm_req">
+                                <h1>#{req.desiredBook.name}</h1>
+                                <p>#{req.status}</p>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+
+    </h:body>
+</html>
