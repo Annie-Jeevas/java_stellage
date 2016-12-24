@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SessionBean {
 
-    private final Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+    private Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
     private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();    
     public int idBookForReading;
     private Book ReadingBook;
