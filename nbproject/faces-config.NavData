@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="editReq.xhtml" x="548" y="387" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="demo.html" x="1150" y="150" zoom="true"/>
+        <Node id="editComm.xhtml" x="715" y="553" zoom="true"/>
+        <Node id="book_description.xhtml" x="-26" y="386" zoom="true"/>
+        <Node id="userInfo.xhtml" x="1161" y="378" zoom="true"/>
+        <Node id="createComment.xhtml" x="267" y="389" zoom="true"/>
+        <Node id="register.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="test.xhtml" x="650" y="269" zoom="true"/>
+        <Node id="index.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="user_profile.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="home.jsp" x="400" y="300" zoom="true"/>
+        <Node id="menu.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="loginerror.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="reading.jsp" x="867" y="387" zoom="true"/>
+        <Node id="my_requests.jsp" x="400" y="151" zoom="true"/>
+        <Node id="real_home.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="my_books.jsp" x="150" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

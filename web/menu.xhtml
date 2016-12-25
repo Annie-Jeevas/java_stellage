@@ -7,17 +7,16 @@
     <div id="container_menu"> 
         <ul id="nav"> 
             <li><a href="real_home.xhtml">Главная</a></li> 
-            <li><a href="user_profile.xhtml">Кабинет</a></li> 
-            <li><a href="#">Бан</a></li>   
-            <li><a href="login.xhtml">Войти</a></li>
-               
-            
+            <li><a href="user_profile.xhtml">Кабинет</a></li>            
+            <c:if test="#{request.remoteUser!=null}">
             <li>Здравствуйте, #{request.remoteUser}</li>
             
+            </c:if> <h:form>
+            <h:commandLink action="#{LoginBean.logout()}" value="Выход"/></h:form>
         </ul> 
     </div> 
-    <h:form>
-        <p><h:commandLink action="#{LoginBean.logout()}" value="Выход"/></p></h:form>
+   
+        
     <header id="header">
         Электронная библиотека "Стеллаж"
     </header>

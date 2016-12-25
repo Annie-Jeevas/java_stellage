@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <c:if test="#{LoginBean.userIn}">
+            <div>TODO write content</div>
+            <h3>
+                <p> Логин: <h:outputLabel value='#{LoginBean.username}'/>  </p>
+                <p> Роль: <h:outputLabel value='#{LoginBean.role}'/> </p>
+            </h3>
+        </c:if>
+        <c:if test="#{!LoginBean.userIn}">
+            <a href="login.xhtml">иди!</a>
+        </c:if>
+    </body>
+</html>

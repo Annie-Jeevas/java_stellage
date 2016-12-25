@@ -7,7 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"          
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <link href="wrapper.css" rel="stylesheet"/>
@@ -30,12 +31,11 @@
         <div class="user_profile">
             <section>                                  
                 <h1>#{request.remoteUser}</h1>
-                <img class="user_profile" src="images/#{request.remoteUser}.jpg"/>
-
+                <img class="user_profile" src="https://cdn.pixabay.com/photo/2014/03/25/16/27/literature-297187_960_720.png"/>
             </section>
-        </div>
+        </div> <!--тоже найти блок-->
 
-
+        <c:if test="#{request.isUserInRole('reader')}">
         <table width="100%" vertical-align="top">
             <tr>
                 <td width="50%"><a class="ahref" href="my_books.jsp">Мои книги</a></td>
@@ -43,41 +43,94 @@
             </tr>
             <tr>
                 <td width="50%">
-                    <div class="wrapper_body_2">
-
-                        <div class="cbm_wrap ">
-                            <h1>Волшебная зима</h1> <!--имя книги-->
-                            <img src="https://i.livelib.ru/boocover/1000496611/o/3baa/Tuve_Yansson__V_kontse_noyabrya.jpeg"/> <!--обложка-->
-                            <p> Небо было почти черным, а снег при свете луны - ярко-голубым. 
-
-                                Под ледяным покровом неподвижно спало море,  а  глубоко  в  земле
-                                среди древесных корней  всем  мелким  зверюшкам  и  насекомым  снилась
-                                весна. Но до весны было еще очень далеко -  новый  год  только-только
-                                вступил в свои права.
-
-                            </p><!--аннотация-->
-                            <br />
-                            <a>Туве Янссон 1990</a><!--автор-->
+                    <h:form>
+                        <div class="wrapper_body_2">
+                            <c:forEach var="book" items="#{mRequestBean.allAllBooks}">
+                                <div class="cbm_wrap">
+                                    <h1><h:outputText value="#{book.name}"/></h1>
+                                    <c:if test="#{book.bookfile==''}">
+                                        <img src="http://khalyavka.kiev.ua/my_documents_4.png"/>
+                                    </c:if>
+                                    <c:if test="#{book.bookfile!=''}">
+                                        <img src="images/#{book.ID}.jpg"/>
+                                    </c:if>
+                                    <p> <h:outputText value="#{book.author}"/></p>
+                                    <p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/>
+                                </div>
+                            </c:forEach>
                         </div>
-
-                    </div>
+                    </h:form>
                 </td>
-                
-                
+
+
                 <td width="50%">
                     <div class="wrapper_body_2">
                         <c:forEach var="req" items="#{mRequestBean.getMyRequests()}">
                             <div class="cbm_req">
-                                <h1>#{req.desiredBook.name}</h1>
-                                <p>#{req.status}</p>
+                                <p>Название книги: #{req.desiredBook.name}</p>
+                                <p>Автор книги: #{req.desiredBook.name}</p>
+                                <p style="color: #0972b4">Статус заявки: #{req.status}</p> <!--возможно сделать красиво-->
                             </div>
                         </c:forEach>
                     </div>
                 </td>
             </tr>
         </table>
-
-
+        </c:if>
+        
+        <c:if test="#{request.isUserInRole('manager')}">
+            <h:form>
+                <p:dataTable var="allreq" value="#{mRequestBean.allRequests}"> 
+                    <p:column headerText="Id">
+                        <h:outputText value="#{allreq.ID}"/>
+                    </p:column>
+                    <p:column headerText="Книга">
+                        <h:outputText value="#{allreq.desiredBook.name}"/>
+                    </p:column>
+                    <p:column headerText="Автор книги">
+                        <h:outputText value="#{allreq.desiredBook.author}"/>
+                    </p:column>
+                    <p:column headerText="Автор заявки">
+                        <h:outputText value="#{allreq.sender.login}"/>
+                    </p:column>
+                    <p:column headerText="Статус">
+                        
+                        <h:outputText value="#{allreq.status}"/>&#9;<h:commandButton value="✍" action="#{sessionBean.setIdEditReq(allreq.ID)}"/>
+                        
+                    </p:column>
+                     
+                    
+                </p:dataTable>
+            </h:form>
+        </c:if>
+        
+        <c:if test="#{request.isUserInRole('admin')}">
+             <h:form>
+                 <p:dataTable var="allcomm" value="#{mRequestBean.allComments}"> 
+                     <p:column headerText="Id" width="5%">
+                        <h:outputText value="#{allcomm.ID}"/>
+                    </p:column>
+                     <p:column headerText="Книга" width="15%">
+                        <h:outputText value="#{allcomm.commentedBook.name}"/>
+                    </p:column>
+                     <p:column headerText="Автор книги" width="15%">
+                        <h:outputText value="#{allcomm.commentedBook.author}"/>
+                    </p:column>
+                     <p:column headerText="Текст" style="text-align: inherit">
+                         <h:outputText value="#{allcomm.text}"/>
+                    </p:column>
+                     <p:column headerText="Автор комментария" width="7%">
+                        <h:outputText value="#{allcomm.commentAuthor.login}"/>
+                    </p:column>
+                    
+                     <p:column headerText="Статус" width="10%">                        
+                        <h:outputText value="#{allcomm.status}"/>&#9;<h:commandButton value="✍" action="#{sessionBean.setIdEditComm(allcomm.ID)}"/>                        
+                    </p:column>
+                     
+                    
+                </p:dataTable>
+            </h:form>
+        </c:if>
 
     </h:body>
 </html>

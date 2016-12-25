@@ -28,13 +28,10 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import dao.*;
+import javax.servlet.annotation.WebFilter;
 import model.*;
 
-
-/**
- *
- * @author Yakov
- */
+@WebFilter("*.xhtml")
 public class UserFilter implements Filter {
 
     private static final boolean debug = false;
