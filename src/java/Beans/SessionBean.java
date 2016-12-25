@@ -26,6 +26,7 @@ public class SessionBean {
     private HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     public int idBookForReading;
     private Book ReadingBook;
+    private Book BookForRequest;
     private Request editReq;
     private Comment editComm;
     private ArrayList<Comment> Comments;
@@ -34,6 +35,14 @@ public class SessionBean {
 
     public Principal getPrincipal() {
         return principal;
+    }
+
+    public Book getBookForRequest() {
+        return BookForRequest;
+    }
+
+    public void setBookForRequest(Book BookForRequest) {
+        this.BookForRequest = BookForRequest;
     }
 
     public String setIdEditReq(int id) {
@@ -171,6 +180,45 @@ public class SessionBean {
         }
     }
 
+    public String addRequest() {
+        try {
+            Request newRequest = new Request();
+            DAOBook daob = new DAOBook();
+            BookForRequest.setGanre("Unknown");
+            BookForRequest.setBookfile("");
+
+            daob.create(BookForRequest);    //создаем в базе книгу с указанными данными
+            int id_bookforRequest = daob.readAll().get(daob.readAll().size() - 1).getID();    //ищем айдишник последней вставленной книги
+            BookForRequest.setID(id_bookforRequest);
+            newRequest.setDesiredBook(BookForRequest);//записываем в заявку айди книги
+
+            String username;
+            if (principal != null) {
+                username = principal.getName();
+            } else {
+                if (request.getRemoteUser() != "") {
+                    username = request.getRemoteUser();
+                } else {
+                    username = "ghost";
+                } //имя вошедшего нужно для поиска по юзерам и вытаскивания айди пользователя
+            }
+            DAOUser daou = new DAOUser();
+            DAOReader daor = new DAOReader();
+            User user = daou.getUserByUsername(username); //собственно нааходим целого юзера по имени, чтобы взять у него айди
+            Reader requestAuthor = daor.read(user.getId_visitor()).get(0);  //передаем этот айди в пользователя, чтобы передать в заявку
+            newRequest.setSender(requestAuthor); // передали составителя в заявку
+            newRequest.setStatus("Составлена");
+            newRequest.setDateOfAdding(new java.sql.Date(0, 0, 0));
+            DAORequest daorq = new DAORequest();
+            daorq.create(newRequest);
+            Logger.getLogger(SessionBean.class.getName()).log(Level.INFO, null, "Sucsess creating request");
+            return "okCreateReq";
+        } catch (ClassNotFoundException | SQLException | NamingException ex) {
+            Logger.getLogger(SessionBean.class.getName()).log(Level.SEVERE, null, ex);
+            return "failCreateReq";
+        }
+    }
+
     public String addToMyBooks() {
 
         try {
@@ -195,6 +243,7 @@ public class SessionBean {
     public SessionBean() {
 
         addedComm = new Comment();
+        BookForRequest = new Book();
     }
 
 }
