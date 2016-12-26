@@ -4,14 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/menu.xhtml</file>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/login.xhtml</file>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/userInfo.xhtml</file>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/src/java/Beans/LoginBean.java</file>
             <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/user_profile.xhtml</file>
             <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/WEB-INF/faces-config.xml</file>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/src/java/Beans/MRequestBean.java</file>
             <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/src/java/Beans/SessionBean.java</file>
-            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/createComment.xhtml</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/src/java/dao/DAOBook.java</file>
+            <file>file:/C:/Users/Анюта/Desktop/Универ/5%20СЕМЕСТР/РПС/КУРСОВОЙ%20ПРОЕКТ/WebApplication1/web/book_description.xhtml</file>
         </group>
     </open-files>
 </project-private>

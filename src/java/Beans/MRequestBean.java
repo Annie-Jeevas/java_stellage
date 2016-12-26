@@ -61,7 +61,7 @@ public class MRequestBean {
         }
     }
 
-    public ArrayList<Book> getAllAllBooks() {
+    public ArrayList<Book> getMyFavourite() {
         ArrayList<Book> books = null;
         try {
             DAOMyBooks daom = new DAOMyBooks();
@@ -78,7 +78,7 @@ public class MRequestBean {
     }
     
 
-     public ArrayList<Book> getMyFavourite() {
+     public ArrayList<Book>  getAllAllBooks(){
         ArrayList<Book> books = null;
         try {
             books = daob.readAll();

@@ -38,22 +38,19 @@
         <c:if test="#{request.isUserInRole('reader')}">
         <table width="100%" vertical-align="top">
             <tr>
-                <td width="50%"><a class="ahref" href="my_books.jsp">Мои книги</a></td>
-                <td width="50%"><a class="ahref" href="my_requests.jsp">Мои заявки</a></td>                   
+                <td width="50%"><a class="ahref" href="#">Мои книги</a></td>
+                <td width="50%"><a class="ahref" href="my_requests.xhtml">Мои заявки</a></td>                   
             </tr>
             <tr>
                 <td width="50%">
                     <h:form>
                         <div class="wrapper_body_2">
-                            <c:forEach var="book" items="#{mRequestBean.allAllBooks}">
+                            <c:forEach var="book" items="#{mRequestBean.myFavourite}">
                                 <div class="cbm_wrap">
                                     <h1><h:outputText value="#{book.name}"/></h1>
-                                    <c:if test="#{book.bookfile==''}">
+                                    
                                         <img src="http://khalyavka.kiev.ua/my_documents_4.png"/>
-                                    </c:if>
-                                    <c:if test="#{book.bookfile!=''}">
-                                        <img src="images/#{book.ID}.jpg"/>
-                                    </c:if>
+                                    
                                     <p> <h:outputText value="#{book.author}"/></p>
                                     <p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/>
                                 </div>
@@ -81,6 +78,7 @@
         <c:if test="#{request.isUserInRole('manager')}">
             <h:form>
                 <p:dataTable var="allreq" value="#{mRequestBean.allRequests}"> 
+                    
                     <p:column headerText="Id">
                         <h:outputText value="#{allreq.ID}"/>
                     </p:column>
@@ -98,8 +96,7 @@
                         <h:outputText value="#{allreq.status}"/>&#9;<h:commandButton value="✍" action="#{sessionBean.setIdEditReq(allreq.ID)}"/>
                         
                     </p:column>
-                     
-                    
+               
                 </p:dataTable>
             </h:form>
         </c:if>

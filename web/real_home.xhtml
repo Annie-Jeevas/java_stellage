@@ -3,7 +3,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"          
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
@@ -33,18 +32,18 @@
         </table>
         <h:form>
             <div class="wrapper_body_2">
-                <c:forEach var="book" items="#{mRequestBean.myFavourite}">
+                <c:forEach var="book" items="#{mRequestBean.allAllBooks}">
+                    <c:if test="#{book.bookfile!=''}">
                     <div class="cbm_wrap">
                         <h1><h:outputText value="#{book.name}"/></h1>
-                        <c:if test="#{book.bookfile==''}">
+                        
                             <img src="http://khalyavka.kiev.ua/my_documents_4.png"/>
-                        </c:if>
-                         <c:if test="#{book.bookfile!=''}">
-                             <img src="images/#{book.ID}.jpg"/>
-                        </c:if>
+                       
+                        
                         <p> <h:outputText value="#{book.author}"/></p>
                         <p:commandButton action="#{sessionBean.setIdBookForReading(book.ID)}" value="Подробнее..."/>
                     </div>
+                    </c:if>
                 </c:forEach>
             </div>
         </h:form>

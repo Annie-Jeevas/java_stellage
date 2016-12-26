@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -162,7 +163,28 @@ public void update(Object o) throws SQLException {
             disconnect();
         }
     }
+     public boolean create(Book v) throws SQLException {
 
+        try {
+            connect();
+            String query = "INSERT INTO " + tb_name + " (name, author, year, file, ganre) VALUES(?, ?, ?, ?, ?)";
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, v.getName());
+            pstmt.setString(2, v.getAuthor());
+            pstmt.setDate(3, new java.sql.Date(0,0,0));
+            pstmt.setString(4, v.getBookfile());
+            pstmt.setString(5, v.getGanre());
+            pstmt.executeUpdate();
+            log.log(Level.INFO, "Insert into {0}.", tb_name);
+            return true;
+        } catch (SQLException ex) {
+            log.log(Level.SEVERE, ex.getLocalizedMessage(), ex);
+            return false;
+        } finally {
+            disconnect();
+        }
+
+    }
     public double averageGrade(Book b) throws ClassNotFoundException, SQLException, NamingException {
         DAOComment daoc = new DAOComment();
         ArrayList<Comment> bookComms = daoc.read(b);

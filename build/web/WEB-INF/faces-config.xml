@@ -44,10 +44,6 @@
             <from-outcome>addingToMyBooksOk</from-outcome>
             <to-view-id>/user_profile.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>addingToMyBooksFail</from-outcome>
-            <to-view-id>/demo.html</to-view-id>
-        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -149,7 +145,30 @@
                 </view-param>
             </redirect>
             <to-view-id>/register.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/createReq.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>okCreateReq</from-outcome>
+            <redirect>
+                <view-param>
+                    <name>param</name>
+                    <value>bar</value>
+                </view-param>
+            </redirect>
+            <to-view-id>/my_requests.xhtml</to-view-id>
         </navigation-case>
-        
+        <navigation-case>
+            <from-outcome>failCreateReq</from-outcome>
+            <redirect>
+                <view-param>
+                    <name>param</name>
+                    <value>bar</value>
+                </view-param>
+            </redirect>
+            <to-view-id>/createReq.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
